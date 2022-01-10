@@ -1,4 +1,4 @@
-package ch.fcappenzell.tools.tournamentOrganiser.model;
+package ch.fcappenzell.tools.tournamentOrganiser.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

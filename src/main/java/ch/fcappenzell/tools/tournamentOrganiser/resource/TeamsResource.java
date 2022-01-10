@@ -1,12 +1,10 @@
 package ch.fcappenzell.tools.tournamentOrganiser.resource;
 
-import ch.fcappenzell.tools.tournamentOrganiser.model.Response;
+import ch.fcappenzell.tools.tournamentOrganiser.model.response.Response;
 import ch.fcappenzell.tools.tournamentOrganiser.model.team.Team;
 import ch.fcappenzell.tools.tournamentOrganiser.service.TeamsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

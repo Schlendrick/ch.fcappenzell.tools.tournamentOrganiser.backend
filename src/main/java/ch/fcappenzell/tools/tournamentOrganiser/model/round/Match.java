@@ -1,4 +1,4 @@
-package ch.fcappenzell.tools.tournamentOrganiser.model;
+package ch.fcappenzell.tools.tournamentOrganiser.model.round;
 
 import java.time.LocalDateTime;
 
