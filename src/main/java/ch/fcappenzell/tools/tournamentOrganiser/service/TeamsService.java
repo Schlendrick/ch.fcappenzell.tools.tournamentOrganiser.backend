@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 import static java.lang.Boolean.TRUE;
 
@@ -19,12 +18,6 @@ import static java.lang.Boolean.TRUE;
 public class TeamsService {
     private final TeamRepo teamRepo;
 
-    public Team create(Team team) {
-        log.info("Saving new Team: {}", team.getName());
-        team.setUuid(UUID.randomUUID().toString());
-        return teamRepo.save(team);
-    }
-
     public List<Team> list() {
         log.info("Fetching all teams");
         return teamRepo.findAll();
@@ -33,6 +26,11 @@ public class TeamsService {
     public Team get(Long id) {
         log.info("Fetching team by id: {}", id);
         return teamRepo.findById(id).get();
+    }
+
+    public Team create(Team team) {
+        log.info("Saving new Team: {}", team.getName());
+        return teamRepo.save(team);
     }
 
     public Team update(Team team) {

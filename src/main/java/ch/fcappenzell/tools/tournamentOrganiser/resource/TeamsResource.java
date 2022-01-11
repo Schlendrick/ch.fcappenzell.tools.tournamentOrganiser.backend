@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 import static java.time.LocalDateTime.now;
+import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -33,8 +34,21 @@ public class TeamsResource {
         );
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<Response> saveTeam(@RequestBody @Valid Team team) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> getTeam(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(Map.of("deleted", teamsService.get(id)))
+                        .message("Team deleted")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Response> createTeam(@RequestBody @Valid Team team) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
@@ -42,6 +56,19 @@ public class TeamsResource {
                         .message("Team created")
                         .status(CREATED)
                         .statusCode(CREATED.value())
+                        .build()
+        );
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<Response> updateTeam(@RequestBody @Valid Team team) {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(Map.of("team", teamsService.update(team)))
+                        .message("Team updated")
+                        .status(ACCEPTED)
+                        .statusCode(ACCEPTED.value())
                         .build()
         );
     }
