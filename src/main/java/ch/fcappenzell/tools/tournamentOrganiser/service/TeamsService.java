@@ -18,27 +18,27 @@ import static java.lang.Boolean.TRUE;
 public class TeamsService {
     private final TeamRepo teamRepo;
 
-    public List<Team> list() {
+    public List<Team> list() throws Exception {
         log.info("Fetching all teams");
         return teamRepo.findAll();
     }
 
-    public Team get(Long id) {
+    public Team get(Long id) throws Exception {
         log.info("Fetching team by id: {}", id);
         return teamRepo.findById(id).get();
     }
 
-    public Team create(Team team) {
+    public Team create(Team team) throws Exception {
         log.info("Saving new Team: {}", team.getName());
         return teamRepo.save(team);
     }
 
-    public Team update(Team team) {
+    public Team update(Team team) throws Exception {
         log.info("Updating team: {}", team.getName());
         return teamRepo.save(team);
     }
 
-    public Boolean delete(Long id){
+    public Boolean delete(Long id) throws Exception{
         log.info("Deleting team by ID: {}", id);
         teamRepo.deleteById(id);
         return TRUE;
