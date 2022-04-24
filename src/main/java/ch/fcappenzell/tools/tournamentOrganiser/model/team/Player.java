@@ -36,7 +36,6 @@ public class Player implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthday ;
 
-    @NotNull
     private Boolean clubPlayer;
 
 }
