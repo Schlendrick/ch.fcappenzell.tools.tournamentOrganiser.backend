@@ -37,6 +37,9 @@ public class Team implements Serializable {
     @JoinColumn(name = "team_id")
     private List<Player> players;
 
+    @Size(max = 300)
+    private String comment;
+
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedAt = new Date();

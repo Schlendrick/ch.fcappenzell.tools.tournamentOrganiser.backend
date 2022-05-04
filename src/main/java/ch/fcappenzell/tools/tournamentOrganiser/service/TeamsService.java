@@ -33,6 +33,11 @@ public class TeamsService {
         return teamRepo.save(team);
     }
 
+    public List<Team> createTeams(List<Team> teams) throws Exception {
+        teams.forEach(team -> log.info("Saving new Team: {}", team));
+        return teamRepo.saveAll(teams);
+    }
+
     public Team update(Team team) throws Exception {
         log.info("Updating team: {}", team.getName());
         return teamRepo.save(team);

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 import static java.time.LocalDateTime.now;
@@ -76,7 +77,25 @@ public class TeamsResource {
                     Response.builder()
                             .timeStamp(now())
                             .data(Map.of("team", teamsService.create(team)))
-                            .message("Team created")
+                            .message(String.format("Team \"%s\" created", team.getName()))
+                            .status(CREATED)
+                            .statusCode(CREATED.value())
+                            .build()
+            );
+        }
+        catch(Exception e) {
+            return handleExceptions(e);
+        }
+    }
+
+    @PostMapping("/createTeams")
+    public ResponseEntity<Response> createTeams(@RequestBody @Valid List<Team> teams) {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .timeStamp(now())
+                            .data(Map.of("teams", teamsService.createTeams(teams)))
+                            .message("Teams created")
                             .status(CREATED)
                             .statusCode(CREATED.value())
                             .build()
@@ -94,7 +113,7 @@ public class TeamsResource {
                     Response.builder()
                             .timeStamp(now())
                             .data(Map.of("team", teamsService.update(team)))
-                            .message("Team updated")
+                            .message(String.format("Team \"%s\" updated", team.getName()))
                             .status(ACCEPTED)
                             .statusCode(ACCEPTED.value())
                             .build()
